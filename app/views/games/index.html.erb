@@ -4,13 +4,14 @@
 
 <div id="games">
   <% @games.each do |game| %>
-    <%= render game %>
     <p>
-      <%= link_to "Show this game", game %>
+      <%="##{game.id} from #{l game.created_at}" %>
+      <%= link_to "Watch", game %>
+      <% if !game.opponent  && game.owner != controller.user_id %>
+        <%= link_to "Join", join_game_path(game), data: {"turbo-method" => :post} %>
+      <% end %>
     </p>
   <% end %>
 </div>
-
-<h1>New game</h1>
 
 <%= render "form", game: @new_game %>

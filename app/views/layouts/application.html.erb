@@ -10,7 +10,8 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
+  <body data-player-id=<%= controller.user_id %>>
+    <%= link_to "Games", games_path %>
     <%= yield %>
   </body>
 </html>

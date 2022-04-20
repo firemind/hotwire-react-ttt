@@ -1,19 +1,30 @@
-<p style="color: green"><%= notice %></p>
+<div class="main-container">
 
-<%= render @game %>
+  <div class="game-container">
+    <p style="color: green"><%= notice %></p>
 
-<%= turbo_stream_from @game %>
+    <%= render @game %>
 
-<div>
-  <%= link_to "Edit this game", edit_game_path(@game) %> |
-  <%= link_to "Back to games", games_path %>
+    <%= turbo_stream_from @game %>
 
-  <%= button_to "Destroy this game", @game, method: :delete %>
+    <%#= render "squares", game: @game %>
+
+
+    <% if @game.owner == controller.user_id %>
+      <hr/>
+      <div>
+        <%= button_to "Destroy this game", @game, method: :delete %>
+      </div>
+    <% end %>
+
+
+  </div>
+  <div class="message-container">
+    <h2>Messages</h2>
+    <div id="messages">
+      <%= render @game.messages %>
+    </div>
+    <%= turbo_frame_tag "new_message", src: new_game_message_path(@game), target: "_top" %>
+
+  </div>
 </div>
-
-
-<div id="messages">
-  <%= render @game.messages %>
-</div>
-
-<%= turbo_frame_tag "new_message", src: new_game_message_path(@game), target: "_top" %>

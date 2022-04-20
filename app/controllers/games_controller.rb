@@ -1,9 +1,9 @@
 class GamesController < ApplicationController
-  before_action :set_game, only: %i[ show edit update destroy ]
+  before_action :set_game, only: %i[ show edit play join update destroy ]
 
   # GET /games or /games.json
   def index
-    @games = Game.all
+    @games = Game.order(created_at: :desc)
     @new_game = Game.new
   end
 
@@ -54,6 +54,32 @@ class GamesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to games_url, notice: "Game was successfully destroyed." }
       format.json { head :no_content }
+    end
+  end
+
+
+  def play
+    unless @game.players_turn?(user_id)
+      raise "Not your turn"
+    end
+    raise "game finished" if @game.finished
+    squares = @game.squares
+    squares[params[:field].to_i] = @game.owner == user_id ? "X" : "O"
+    @game.squares = squares
+    @game.save!
+    respond_to do |format|
+      format.turbo_stream {
+        # render turbo_stream: turbo_stream.replace(:board, partial: "squares")
+      }
+    end
+  end
+
+  def join
+    raise "game already full" if @game.opponent != nil
+    @game.opponent = user_id
+    @game.save!
+    respond_to do |format|
+      format.html { redirect_to @game, notice: "Game was successfully joined", method: :get }
     end
   end
 

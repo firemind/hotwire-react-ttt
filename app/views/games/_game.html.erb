@@ -1,12 +1,15 @@
-<div id="<%= dom_id game %>">
-  <p>
-    <strong>Owner:</strong>
-    <%= game.owner %>
-  </p>
+<%= turbo_frame_tag "game_state", target: "_top" do %>
+  <div id="<%= dom_id game %>">
+    <%= render "squares", game: game %>
 
-  <p>
-    <strong>Opponent:</strong>
-    <%= game.opponent %>
-  </p>
+  </div>
 
-</div>
+<% end %>
+
+<%# if game.is_player?(controller.user_id) %>
+  <%# if game.players_turn?(controller.user_id) %>
+<!--    <p>Your Turn</p>-->
+  <%# else %>
+<!--    <p>Waiting for opponent</p>-->
+  <%# end %>
+<%# end %>
