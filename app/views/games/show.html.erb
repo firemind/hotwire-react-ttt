@@ -1,0 +1,19 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @game %>
+
+<%= turbo_stream_from @game %>
+
+<div>
+  <%= link_to "Edit this game", edit_game_path(@game) %> |
+  <%= link_to "Back to games", games_path %>
+
+  <%= button_to "Destroy this game", @game, method: :delete %>
+</div>
+
+
+<div id="messages">
+  <%= render @game.messages %>
+</div>
+
+<%= turbo_frame_tag "new_message", src: new_game_message_path(@game), target: "_top" %>
