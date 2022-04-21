@@ -67,4 +67,25 @@ class Game < ApplicationRecord
   def message_channel
     "messages-#{id}"
   end
+
+  def game_channel
+    "game-#{id}"
+  end
+
+  def winner_symbol
+    return nil unless finished
+    turn_count % 2 == 0 ? "O" : "X"
+  end
+
+  def as_json(params={})
+    {
+      id: id,
+      squares: squares,
+      active_player: active_player,
+      finished: finished,
+      x_player: owner,
+      o_player: opponent,
+      winner_symbol: winner_symbol,
+    }
+  end
 end

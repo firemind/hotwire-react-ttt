@@ -11,9 +11,10 @@ import Game from "./components/game.jsx"
 //   ReactDOM.render(<Messages />, document.body.appendChild(document.createElement('div')))
 // })
 
-const root = createRoot(document.getElementById('game'));
-root.render(<Game />);
+const gameEl = document.getElementById('game');
+const root = createRoot(gameEl);
+root.render(<Game gameid={gameEl.dataset.gameid} playerid={gameEl.dataset.playerid}/>);
 
-var messageEl = document.getElementById('messages');
+const messageEl = document.getElementById('messages');
 const messageRoot = createRoot(messageEl);
 messageRoot.render(<Messages gameid={messageEl.dataset.gameid}/>);

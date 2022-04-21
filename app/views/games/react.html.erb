@@ -7,11 +7,13 @@ background: #c00;
   white-space: pre-wrap;
 "></div>
 | <%= link_to "Hotwire", @game %> | React
+
+<h1>React Client</h1>
 <div id="root"></div>
 <div class="main-container">
   <div class="game-container">
     <%#= react_component("Game", {game_id: @game.id}) %>
-    <div id="game" data-game-id="<%=  @game.id %>"></div>
+    <div id="game" data-gameid="<%=  @game.id %>" data-playerid="<%= controller.user_id %>"></div>
   </div>
   <div class="message-container">
     <div id="messages" data-gameid="<%=  @game.id %>"></div>

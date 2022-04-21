@@ -71,6 +71,7 @@ class GamesController < ApplicationController
     squares[params[:field].to_i] = @game.owner == user_id ? "X" : "O"
     @game.squares = squares
     @game.save!
+    ActionCable.server.broadcast(@game.game_channel, @game)
     respond_to do |format|
       format.turbo_stream {
         # render turbo_stream: turbo_stream.replace(:board, partial: "squares")
