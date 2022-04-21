@@ -49,6 +49,7 @@ class Board extends React.Component {
 class Game extends React.Component {
   constructor(props) {
     super(props);
+    var game = this;
     this.channel = consumer.subscriptions.create({channel: 'GameChannel', game: props.gameid}, {
       connected() {
         // Called when the subscription is ready for use on the server
@@ -59,10 +60,9 @@ class Game extends React.Component {
       },
 
       received(data) {
-        // Called when there's incoming data on the websocket for this channel
+        game.updateSquares(data.squares, data.active_player, data.x_player, data.winner_symbol)
       },
     });
-    this.channel.received = (data) => this.updateSquares(data.squares, data.active_player, data.x_player, data.winner_symbol)
     this.gameid = props.gameid;
     this.playerid = props.playerid;
     this.state = {
