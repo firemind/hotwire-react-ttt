@@ -8,6 +8,8 @@ class MessagesController < ApplicationController
   # POST /games or /games.json
   def create
     @message = @game.messages.create!(message_params)
+
+    ActionCable.server.broadcast(@game.message_channel, { messages: @game.messages })
     respond_to do |format|
       format.html { redirect_to @message.game, notice: "Message was successfully created." }
       format.turbo_stream { }

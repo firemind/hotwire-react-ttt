@@ -63,4 +63,8 @@ class Game < ApplicationRecord
     end
     return false
   end
+
+  def message_channel
+    "messages-#{id}"
+  end
 end

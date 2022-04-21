@@ -1,0 +1,19 @@
+<div id="errors" style="
+background: #c00;
+  color: #fff;
+  display: none;
+  margin: -20px -20px 20px;
+  padding: 20px;
+  white-space: pre-wrap;
+"></div>
+| <%= link_to "Hotwire", @game %> | React
+<div id="root"></div>
+<div class="main-container">
+  <div class="game-container">
+    <%#= react_component("Game", {game_id: @game.id}) %>
+    <div id="game" data-game-id="<%=  @game.id %>"></div>
+  </div>
+  <div class="message-container">
+    <div id="messages" data-gameid="<%=  @game.id %>"></div>
+  </div>
+</div>

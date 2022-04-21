@@ -1,5 +1,5 @@
 class GamesController < ApplicationController
-  before_action :set_game, only: %i[ show edit play join update destroy ]
+  before_action :set_game, only: %i[ show react edit play join update destroy ]
 
   # GET /games or /games.json
   def index
@@ -9,6 +9,10 @@ class GamesController < ApplicationController
 
   # GET /games/1 or /games/1.json
   def show
+  end
+
+  def react
+    render layout: 'react'
   end
 
   # GET /games/new

@@ -8,6 +8,7 @@ gem "rails", "~> 7.0.2", ">= 7.0.2.3"
 
 gem 'hotwire-rails'
 
+
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 
@@ -72,3 +73,5 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+
+gem "jsbundling-rails", "~> 1.0"
