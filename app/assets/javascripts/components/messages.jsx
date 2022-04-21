@@ -1,6 +1,4 @@
-// import 'channels'
 import React, { useState, useEffect } from 'react'
-import ReactDOM from 'react-dom'
 import consumer from '../channels/consumer'
 
 const Messages = (props) => {

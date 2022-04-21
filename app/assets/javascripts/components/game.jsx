@@ -81,13 +81,6 @@ class Game extends React.Component {
       },
       body: JSON.stringify({field: i}),
     });
-    // const squares = this.state.squares.slice();
-    //
-    // if (calculateWinner(squares) || squares[i]) {
-    //   return;
-    // }
-    // squares[i] = this.state.xIsNext ? "X" : "O";
-    // this.updateSquares(squares)
   }
 
   updateSquares(squares, activePlayer, xPlayer, winner) {
